@@ -1,0 +1,94 @@
+﻿<Window x:Class="Hangman.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Виселица" Height="700" Width="1200"
+        WindowStartupLocation="CenterScreen">
+    <Grid x:Name="RootGrid">
+
+        <!-- МЕНЮ -->
+        <Grid x:Name="MenuScreen">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock x:Name="TitleText" Text="ВИСЕЛИЦА" FontSize="56" FontWeight="Bold"
+                           HorizontalAlignment="Center" Margin="0,0,0,40"/>
+
+                <TextBlock x:Name="ThemeLabel" Text="Тема:" FontSize="18" Margin="0,10"/>
+                <ComboBox x:Name="ThemeBox" Width="250" FontSize="16" SelectedIndex="0">
+                    <ComboBoxItem Content="Светлая"/>
+                    <ComboBoxItem Content="Тёмная"/>
+                </ComboBox>
+
+
+                <TextBlock x:Name="PlayersLabel" Text="Игроков:" FontSize="18" Margin="0,20,0,10"/>
+                <ComboBox x:Name="PlayersBox" Width="250" FontSize="16" SelectedIndex="0">
+                    <ComboBoxItem Content="1"/>
+                    <ComboBoxItem Content="2"/>
+                </ComboBox>
+
+                <Button Content="НАЧАТЬ ИГРУ" Width="250" Height="50" FontSize="18"
+                        Margin="0,40,0,0" Click="StartGame_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- ИГРА -->
+        <Grid x:Name="GameScreen" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Таймер -->
+            <TextBlock x:Name="TimerText" Grid.Row="0" Text="05:00" FontSize="32"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center" Margin="0,15"/>
+
+            <!-- Игровые панели -->
+            <Grid x:Name="PanelsGrid" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="Col1" Width="*"/>
+                    <ColumnDefinition x:Name="Splitter" Width="0"/>
+                    <ColumnDefinition x:Name="Col2" Width="0"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" x:Name="Panel1Border" BorderThickness="0,0,2,0"
+                        BorderBrush="Gray">
+                    <StackPanel>
+                        <TextBlock x:Name="Player1Title" Text="Игрок 1" FontSize="22"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center" Margin="0,10"/>
+                        <Canvas x:Name="Canvas1" Width="200" Height="200" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="Word1" Text="" FontSize="28"
+                                   HorizontalAlignment="Center" Margin="0,15"/>
+                        <TextBlock x:Name="Wrong1" Text="Ошибки: 0/6" FontSize="16"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="Score1" Text="Угадано слов: 0" FontSize="18"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center" Margin="0,10"/>
+                        <UniformGrid x:Name="Keyboard1" Columns="11" Margin="20"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" x:Name="Panel2Border" BorderThickness="2,0,0,0"
+                        BorderBrush="Gray" Visibility="Collapsed">
+                    <StackPanel>
+                        <TextBlock x:Name="Player2Title" Text="Игрок 2" FontSize="22"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center" Margin="0,10"/>
+                        <Canvas x:Name="Canvas2" Width="200" Height="200" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="Word2" Text="" FontSize="28"
+                                   HorizontalAlignment="Center" Margin="0,15"/>
+                        <TextBlock x:Name="Wrong2" Text="Ошибки: 0/6" FontSize="16"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="Score2" Text="Угадано слов: 0" FontSize="18"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center" Margin="0,10"/>
+                        <UniformGrid x:Name="Keyboard2" Columns="11" Margin="20"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Button Grid.Row="2" Content="В меню" Width="120" Height="35"
+                    HorizontalAlignment="Right" Margin="10" Click="BackToMenu_Click"/>
+        </Grid>
+    </Grid>
+</Window>
